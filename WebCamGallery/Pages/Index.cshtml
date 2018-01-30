@@ -9,23 +9,24 @@
 	<style type="text/css">
 		#links a>img
 		{
-			width:10%;
-			height:10%
+			width:5%;
+			height:5%
 		}
 	</style>
 }
 
 
 <div id="links">
-	<a href="images/out-0.jpg" title="out-0.jpg">
-		<img src="images/out-0.jpg" alt="out-0.jpg" />
-	</a>
-	<a href="images/out-36.jpg" title="out-36.jpg">
-		<img src="images/out-36.jpg" alt="out-36.jpg" />
-	</a>
-	<a href="images/out-70.jpg" title="out-70.jpg">
-		<img src="images/out-70.jpg" alt="out-70.jpg" />
-	</a>
+@{ 
+	foreach (var f in Model.Files)
+	{
+		var name = f.Name;
+
+		<a href="images/@name" title="@name">
+			<img src="images/@name" alt="@name" />
+		</a>
+	}
+}
 </div>
 <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
 	<div class="slides"></div>

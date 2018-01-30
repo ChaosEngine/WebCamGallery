@@ -28,8 +28,11 @@ namespace WebCamGallery.Pages
 				var path = Path.Combine(_imageDirectory, fileName);
 				if (System.IO.File.Exists(path))
 				{
-					//var fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-					return base.PhysicalFile(path, "image/jpg"/*, fileName*/);
+					if (Path.GetDirectoryName(path) == _imageDirectory)
+					{
+						//var fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+						return base.PhysicalFile(path, "image/jpg"/*, fileName*/);
+					}
 				}
 			}
 			return NotFound();
