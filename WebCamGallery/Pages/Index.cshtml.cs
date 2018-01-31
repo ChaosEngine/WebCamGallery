@@ -13,7 +13,7 @@ namespace WebCamGallery.Pages
 	{
 		private readonly string _imageDirectory;
 
-		public IEnumerable<FileInfo> Files { get; private set; }
+		public IEnumerable<string> Jpgs { get; private set; }
 
 		public IndexModel(IConfiguration configuration)
 		{
@@ -28,7 +28,7 @@ namespace WebCamGallery.Pages
 				var di = new DirectoryInfo(_imageDirectory);
 				var files = di.EnumerateFiles("*.jpg", SearchOption.TopDirectoryOnly);
 
-				Files = files.OrderByDescending( f => f.LastWriteTime);
+				Jpgs = files.OrderByDescending(f => f.LastWriteTime).Select(x => x.Name);
 			}
 		}
 	}

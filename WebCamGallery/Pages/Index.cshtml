@@ -18,13 +18,9 @@
 
 <div id="links">
 @{ 
-	foreach (var f in Model.Files)
+	foreach (var name in Model.Jpgs)
 	{
-		var name = f.Name;
-
-		<a href="images/@name" title="@name">
-			<img src="images/@name" alt="@name" />
-		</a>
+		<a href="images/@name" title="@name"><img src="images/@name" alt="@name" /></a>
 	}
 }
 </div>
