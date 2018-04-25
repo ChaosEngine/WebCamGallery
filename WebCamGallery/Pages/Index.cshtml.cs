@@ -23,7 +23,7 @@ namespace WebCamGallery.Pages
 
 		public void OnGet()
 		{
-			if (Directory.Exists(_imageDirectory))
+			if (_imageDirectory != null && Directory.Exists(_imageDirectory))
 			{
 				var di = new DirectoryInfo(_imageDirectory);
 				var files = di.EnumerateFiles("*.jpg", SearchOption.TopDirectoryOnly);

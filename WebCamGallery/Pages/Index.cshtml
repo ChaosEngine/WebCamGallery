@@ -18,9 +18,12 @@
 
 <div id="links">
 @{ 
-	foreach (var name in Model.Jpgs)
+	if (Model.Jpgs != null)
 	{
-		<a href="images/@name" title="@name"><img src="images/@name" alt="@name" /></a>
+		foreach (var name in Model.Jpgs)
+		{
+			<a href="images/@name" title="@name"><img src="images/@name" alt="@name" /></a>
+		}
 	}
 }
 </div>
