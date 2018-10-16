@@ -1,7 +1,54 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+	ViewData["Title"] = "Home page";
+}
+@section headElements
+{
+	<link rel="stylesheet" href="~/lib/blueimp-gallery/css/blueimp-gallery.min.css">
+	<style type="text/css">
+		#links a>img
+		{
+			width:5%;
+			height:5%
+		}
+	</style>
 }
 
-la la la
+
+<div id="links">
+@{ 
+	if (Model.Jpgs != null)
+	{
+		foreach (var name in Model.Jpgs)
+		{
+			<a href="images/@name" title="@name"><img src="images/@name" alt="@name" /></a>
+		}
+	}
+}
+</div>
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+	<div class="slides"></div>
+	<h3 class="title"></h3>
+	<a class="prev">‹</a>
+	<a class="next">›</a>
+	<a class="close">×</a>
+	<a class="play-pause"></a>
+	<ol class="indicator"></ol>
+</div>
+
+
+@section Scripts
+{
+	<script type="text/javascript" src="~/lib/blueimp-gallery/js/blueimp-gallery.min.js"></script>
+	<script type="text/javascript">
+		document.getElementById('links').onclick = function (event) {
+			event = event || window.event;
+			var target = event.target || event.srcElement,
+				link = target.src ? target.parentNode : target,
+				options = {index: link, event: event},
+				links = this.getElementsByTagName('a');
+			blueimp.Gallery(links, options);
+		};
+	</script>
+}
